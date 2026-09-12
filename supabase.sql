@@ -10,10 +10,13 @@ create table if not exists public.tracks (
 
 alter table public.tracks enable row level security;
 
-create policy "Anyone can read tracks"
-on public.tracks for select
-to anon, authenticated
-using (true);
+create policy "Only admin can add tracks"
+on public.tracks
+for insert
+to authenticated
+with check (
+    auth.uid() = 'b224057d-72b0-4492-9c6b-204f8e8045ca'::uuid
+);
 
 create policy "Anyone can add tracks"
 on public.tracks for insert
