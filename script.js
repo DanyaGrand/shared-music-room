@@ -1,6 +1,6 @@
 // ВСТАВЬ СЮДА данные из Supabase: Project URL и anon public key.
-const SUPABASE_URL = "YOUR_SUPABASE_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_ANON_KEY";
+const SUPABASE_URL = "https://lroavfagilgbujyaqqbk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_9JIiQmMwOlc6kCaZILPlKw_QYkbuRUv";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const audio=document.getElementById("audio"), tracksEl=document.getElementById("tracks");
