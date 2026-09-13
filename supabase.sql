@@ -31,7 +31,7 @@ drop policy if exists "Only admin can add tracks" on public.tracks;
 create policy "Only admin can add tracks"
 on public.tracks for insert
 to authenticated
-with check (auth.uid() = 'a39ac2c6-2b78-4436-b942-f49b2d9e6bd1'::uuid);
+with check (auth.uid() = 'b224057d-72b0-4492-9c6b-204f8e8045ca'::uuid);
 
 -- Storage: читать музыку могут все, загружать — только владелец.
 drop policy if exists "Public can upload music" on storage.objects;
@@ -47,7 +47,7 @@ on storage.objects for insert
 to authenticated
 with check (
   bucket_id = 'music'
-  and auth.uid() = 'a39ac2c6-2b78-4436-b942-f49b2d9e6bd1'::uuid
+  and auth.uid() = 'b224057d-72b0-4492-9c6b-204f8e8045ca'::uuid
 );
 
 -- Realtime для списка песен.
