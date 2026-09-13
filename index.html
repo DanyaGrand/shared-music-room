@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Shared Music Room</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -9,37 +10,37 @@
 <body>
 <div class="glow"></div>
 <main>
-<header><div class="brand"><b>♫</b><div><strong>Shared Music Room</strong><small>Общая музыка</small></div></div><button id="theme">☼</button></header>
+<header>
+  <div class="brand"><b>♫</b><div><strong>Shared Music Room</strong><small>Общая музыка</small></div></div>
+  <button id="theme">☼</button>
+</header>
 
 <section class="hero">
-<span>YOUR SHARED PLAYLIST</span>
-<h1>Скидывай музыку.<br><em>Слушайте вместе.</em></h1>
-<p>Загрузи песню один раз — она появится у всех, кто откроет эту ссылку.</p>
+  <span>YOUR SHARED PLAYLIST</span>
+  <h1>Слушайте музыку<br><em>вместе.</em></h1>
+  <p>Выбери песню из общей коллекции и включай её. Добавлять музыку может только владелец комнаты.</p>
 </section>
 
 <section class="player">
-<div class="cover"><img id="cover" hidden><div id="coverEmpty">♫</div></div>
-<div class="info">
-<label>NOW PLAYING</label><h2 id="nowTitle">Пока ничего не играет</h2><p id="nowArtist">Выбери трек ниже</p>
-<div class="bar"><span id="cur">0:00</span><input id="seek" type="range" min="0" max="100" value="0"><span id="dur">0:00</span></div>
-<div class="buttons"><button id="prev">↶</button><button id="play">▶</button><button id="next">↷</button><span class="speaker">🔊</span><input id="vol" type="range" min="0" max="1" step=".01" value=".8"></div>
-</div>
+  <div class="cover"><img id="cover" hidden><div id="coverEmpty">♫</div></div>
+  <div class="info">
+    <label>NOW PLAYING</label>
+    <h2 id="nowTitle">Пока ничего не играет</h2>
+    <p id="nowArtist">Выбери трек ниже</p>
+    <div class="bar"><span id="cur">0:00</span><input id="seek" type="range" min="0" max="100" value="0"><span id="dur">0:00</span></div>
+    <div class="buttons"><button id="prev">↶</button><button id="play">▶</button><button id="next">↷</button><span class="speaker">🔊</span><input id="vol" type="range" min="0" max="1" step=".01" value=".8"></div>
+  </div>
 </section>
 
-<section class="upload">
-<div><span>ADD TRACK</span><h2>Добавить песню</h2></div>
-<div class="fields"><input id="title" placeholder="Название песни"><input id="artist" placeholder="Исполнитель"></div>
-<div class="files">
-<label><input id="audioFile" type="file" accept="audio/*"><b>🎵</b>Выбрать аудио<small>MP3, WAV, OGG</small></label>
-<label><input id="imageFile" type="file" accept="image/*"><b>🖼️</b>Обложка<small>JPG, PNG, WEBP</small></label>
-</div>
-<button id="upload">Загрузить в общую комнату</button>
-<p id="status">После загрузки трек увидят все посетители этой страницы.</p>
+<section class="playlist">
+  <div class="listHead"><h2>Все песни</h2><span id="count">0 треков</span></div>
+  <div id="status" class="status">Загрузка списка...</div>
+  <div id="tracks"></div>
 </section>
 
-<section class="playlist"><div class="listHead"><h2>Все песни</h2><span id="count">0 треков</span></div><div id="tracks"></div></section>
 <footer>Shared Music Room · powered by Supabase</footer>
 </main>
 <audio id="audio"></audio>
-<script src="script.js"></script>
-</body></html>
+<script src="app.js"></script>
+</body>
+</html>

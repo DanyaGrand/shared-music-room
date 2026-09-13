@@ -1,66 +1,18 @@
-# 🎵 Shared Music Room — Supabase + GitHub Pages
+# Shared Music Room — только владелец загружает музыку
 
-Это версия, где песню загружает один человек, а **все посетители одной GitHub Pages-ссылки видят её и могут слушать**.
+Публичная страница: `/`
+Админка владельца: `/admin.html`
 
-## 1. Создай Supabase
+## Настройка
 
-Открой https://supabase.com/ → создай проект.
+1. В Supabase открой Authentication → Users → Add user и создай свой аккаунт email/password.
+2. Скопируй User UID этого пользователя.
+3. Открой `supabase.sql`, замени `YOUR_ADMIN_USER_UUID` на этот UID и выполни SQL в Supabase SQL Editor.
+4. В `app.js` и `admin.js` замени `ТВОЙ_PUBLISHABLE_KEY` на свой Publishable key.
+5. Убедись, что Storage bucket называется `music`.
+6. Залей файлы проекта в GitHub Pages.
+7. Для загрузки открывай `https://danyagrand.github.io/shared-music-room/admin.html` и входи своим аккаунтом.
 
-После создания:
-**Project Settings → API**
+Обычная общая ссылка `/` не содержит формы загрузки. Посетители могут только выбирать и слушать песни.
 
-Скопируй:
-- Project URL
-- Publishable/anon public key (не service_role)
-
-Открой `script.js` и замени:
-`YOUR_SUPABASE_URL`
-`YOUR_SUPABASE_ANON_KEY`
-
-## 2. Создай таблицу
-
-Supabase → **SQL Editor → New query**.
-
-Скопируй содержимое `supabase.sql` и нажми **Run**.
-
-## 3. Создай хранилище
-
-Supabase → **Storage → New bucket**.
-
-Название:
-`music`
-
-Сделай bucket **Public**.
-
-Затем Storage → Policies создай:
-- SELECT: разрешить `anon` и `authenticated` для bucket `music`
-- INSERT: разрешить `anon` и `authenticated` для bucket `music`
-
-Для учебного/личного проекта это простой вариант. Если сайт станет публичным, лучше добавить авторизацию, ограничения размера файлов и более строгие политики.
-
-## 4. GitHub
-
-Создай Public repository, например `shared-music`.
-
-Загрузи:
-- index.html
-- style.css
-- script.js
-
-`supabase.sql` можно тоже загрузить — он не нужен сайту, но пригодится для настройки.
-
-GitHub → **Settings → Pages**
-→ Source: **Deploy from a branch**
-→ Branch: **main**
-→ Folder: **/(root)**
-→ Save.
-
-Через некоторое время GitHub выдаст ссылку.
-
-## Как это работает
-
-Пользователь A загружает MP3 → файл попадает в Supabase Storage → ссылка сохраняется в таблице `tracks`.
-
-Пользователь B открывает ту же GitHub Pages-ссылку → сайт читает таблицу → песня появляется у него → он нажимает ▶ и слушает.
-
-Новые загрузки появляются у уже открытых пользователей через Supabase Realtime.
+Важно: в браузере/GitHub можно использовать только Publishable key. Secret key никогда не вставляй в JS.

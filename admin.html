@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Админка — Shared Music Room</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="glow"></div>
+<main>
+<header>
+  <div class="brand"><b>♫</b><div><strong>Shared Music Room</strong><small>Панель владельца</small></div></div>
+  <button id="theme">☼</button>
+</header>
+
+<section class="hero">
+  <span>OWNER PANEL</span>
+  <h1>Управление<br><em>музыкой.</em></h1>
+  <p>Только авторизованный владелец может добавлять песни в общую коллекцию.</p>
+</section>
+
+<section id="loginBox" class="upload">
+  <div><span>OWNER LOGIN</span><h2>Войти</h2></div>
+  <div class="fields">
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Пароль">
+  </div>
+  <button id="login">Войти в админку</button>
+  <p id="loginStatus">Войди через аккаунт Supabase Auth.</p>
+</section>
+
+<section id="adminBox" class="upload" hidden>
+  <div class="adminTop"><div><span>ADD TRACK</span><h2>Добавить песню</h2></div><button id="logout" class="secondary">Выйти</button></div>
+  <div class="fields"><input id="title" placeholder="Название песни"><input id="artist" placeholder="Исполнитель"></div>
+  <div class="files">
+    <label><input id="audioFile" type="file" accept="audio/*"><b>🎵</b>Выбрать аудио<small>MP3, WAV, OGG</small></label>
+    <label><input id="imageFile" type="file" accept="image/*"><b>🖼️</b>Обложка<small>JPG, PNG, WEBP</small></label>
+  </div>
+  <button id="upload">Загрузить в общую комнату</button>
+  <p id="status">После загрузки трек появится у всех посетителей.</p>
+</section>
+
+<section class="playlist">
+  <div class="listHead"><h2>Общая коллекция</h2><span id="count">0 треков</span></div>
+  <div id="tracks"></div>
+</section>
+
+<footer><a href="./">← Вернуться к плееру</a></footer>
+</main>
+<script src="admin.js"></script>
+</body>
+</html>
